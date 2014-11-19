@@ -17,6 +17,8 @@
 #define region_play_max_y 420
 #define region_play_min_x 20
 #define region_play_min_y 20
+int status = 0;
+int battle_enemy = 0;
 Map::Map(QWidget *parent)
     : QWidget(parent)
 {
@@ -70,6 +72,7 @@ void Map::paintEvent(QPaintEvent */*event*/)
 
 void Map::move_down()
 {
+    status = 1;
    player_pos_y+=size;
    if(player_pos_y>region_play_max_y)
        player_pos_y -=size;
@@ -78,6 +81,7 @@ void Map::move_down()
 }
 void Map::move_up()
 {
+    status = 2;
    player_pos_y-=size;
    if(player_pos_y<region_play_min_y)
        player_pos_y += size;
@@ -86,6 +90,7 @@ void Map::move_up()
 }
 void Map::move_right()
 {
+    status = 3;
    player_pos_x+=size;
    if(player_pos_x>region_play_max_x)
        player_pos_x -= size;
@@ -94,6 +99,7 @@ void Map::move_right()
 }
 void Map::move_left()
 {
+    status = 4;
    player_pos_x-=size;
    if(player_pos_x<region_play_min_x)
        player_pos_x+= size;
@@ -102,6 +108,7 @@ void Map::move_left()
 }
 void Map::move_up_left()
 {
+    status = 5;
     player_pos_x -=size;
     player_pos_y -=size;
     if(player_pos_x<region_play_min_x || player_pos_y < region_play_min_y)
@@ -114,6 +121,7 @@ void Map::move_up_left()
 }
 void Map::move_up_right()
 {
+    status = 6;
     player_pos_x +=size;
     player_pos_y -=size;
     if(player_pos_x>region_play_max_x || player_pos_y<region_play_min_y)
@@ -126,6 +134,7 @@ void Map::move_up_right()
 }
 void Map::move_down_left()
 {
+    status = 7;
     player_pos_x -=size;
     player_pos_y +=size;
     if(player_pos_x<region_play_min_x || player_pos_y>region_play_max_y)
@@ -138,6 +147,7 @@ void Map::move_down_left()
 }
 void Map::move_down_right()
 {
+    status = 8;
     player_pos_x +=size;
     player_pos_y +=size;
     if(player_pos_x>region_play_max_x || player_pos_y > region_play_max_y)
@@ -188,15 +198,53 @@ void Map::battle()
     {
         if(player_pos_x == enemy_pos_x[i] && player_pos_y == enemy_pos_y[i])
         {
-            int temp;
-            temp = rand()%20;
-            if(temp < 5)
+            battle_enemy = i;
+            int battle_res;
+            battle_res = rand()%20;
+            if(battle_res < 5)
             {
+                if(status == 1)
+                {
+                    player_pos_y-=size;
+                }
+                if(status == 2)
+                {
+                    player_pos_y+=size;
+                }
+                if(status == 3)
+                {
+                    player_pos_x-=size;
+                }
+                if(status == 4)
+                {
+                    player_pos_x+=size;
+                }
+                if(status == 5)
+                {
+                    player_pos_x +=size;
+                    player_pos_y +=size;
+                }
+                if(status == 6)
+                {
+                    player_pos_x -=size;
+                    player_pos_y +=size;
+                }
+                if(status == 7)
+                {
+                    player_pos_x +=size;
+                    player_pos_y -=size;
+                }
+                if(status == 8)
+                {
+                    player_pos_x -=size;
+                    player_pos_y -=size;
+                }
                 emit Map_Lost_battle();
             }
             else
             {
-
+                enemy_pos_x[battle_enemy] = -20;
+                enemy_pos_y[battle_enemy] = -20;
             }
         }
     }
