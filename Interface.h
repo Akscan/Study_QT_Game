@@ -28,6 +28,8 @@ private:
     int Player_attack;
 public slots:
     void Int_Lost_Battle();
+private slots :
+    void game_end();
 signals:
     void clicked_up();
     void clicked_down();
@@ -38,6 +40,7 @@ signals:
     void clicked_down_left();
     void clicked_down_right();
     void Decrease_health(int);
+    void Player_death();
 //    void Attack_chanched(int);
 };
 

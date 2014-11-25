@@ -201,7 +201,7 @@ void Map::battle()
             battle_enemy = i;
             int battle_res;
             battle_res = rand()%20;
-            if(battle_res < 5)
+            if(battle_res < 10)
             {
                 if(status == 1)
                 {
