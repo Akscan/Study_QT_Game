@@ -15,8 +15,14 @@ TEMPLATE = app
 SOURCES += main.cpp\
         map.cpp \
     Interface.cpp \
-    MainWindow.cpp
+    MainWindow.cpp \
+    Hero.cpp \
+    enemy.cpp \
+    Item.cpp
 
 HEADERS  += map.h \
     Interface.h \
-    MainWindow.h
+    MainWindow.h \
+    Hero.h \
+    enemy.h \
+    Item.h

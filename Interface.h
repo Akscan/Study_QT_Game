@@ -41,7 +41,7 @@ signals:
     void clicked_down_right();
     void Decrease_health(int);
     void Player_death();
-//    void Attack_chanched(int);
+    void Attack_chanched(int attack);
 };
 
 #endif // INTERFACE_H

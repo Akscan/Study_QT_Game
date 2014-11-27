@@ -26,6 +26,7 @@ private:
     QPixmap Wall;
     QPixmap Hero;
     QPixmap Enemy;
+    QPixmap Sword;
     int player_pos_x;
     int player_pos_y;
     int enemy_pos_x[number_enemy];

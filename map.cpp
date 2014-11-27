@@ -31,6 +31,7 @@ Map::Map(QWidget *parent)
     Hero.load("Hero.bmp");
     Wall.load("Wall.bmp");
     Enemy.load("Enemy.bmp");
+    Sword.load("Sword.bmp");
     connect(this,SIGNAL(value_changed_down()),this,SLOT(move_down()));
     connect(this,SIGNAL(value_changed_up()),this,SLOT(move_up()));
     connect(this,SIGNAL(value_changed_right()),this,SLOT(move_right()));
@@ -65,6 +66,9 @@ void Map::paintEvent(QPaintEvent */*event*/)
         QPoint point_enemy(enemy_pos_x[i],enemy_pos_y[i]);
         painter.drawPixmap(point_enemy,Enemy);
     }
+    point.setX(40);
+    point.setY(40);
+    painter.drawPixmap(point,Sword);
 
 }
 

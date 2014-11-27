@@ -36,7 +36,7 @@ Interface::Interface(QWidget *parent)
     connect(Down_Left,SIGNAL(clicked()),this,SIGNAL(clicked_down_left()));
     connect(Down_Right,SIGNAL(clicked()),this,SIGNAL(clicked_down_right()));
     connect(this,SIGNAL(Decrease_health(int)),Health,SLOT(setNum(int)));
-//    connect(this,SIGNAL(Attack_chanched(int)),Attack,SLOT(setNum(int)));
+    connect(this,SIGNAL(Attack_chanched(int)),Attack,SLOT(setNum(int)));
     connect(this,SIGNAL(Player_death()),this,SLOT(game_end()));
     QGridLayout *layout = new QGridLayout;
     layout->addWidget(Up,0,1);
@@ -63,11 +63,6 @@ void Interface::Int_Lost_Battle()
     else
         emit Player_death();
 }
-/*void Interface::Attack_chanched(int)
-{
-    Player_attack++;
-}
-*/
 
 void Interface::game_end()
 {
