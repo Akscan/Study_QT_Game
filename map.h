@@ -11,7 +11,7 @@ class QLabel;
 class QPushButton;
 class QImage;
 class QPixmap;
-
+class Hero;
 class Map : public QWidget
 {
     Q_OBJECT
@@ -24,11 +24,9 @@ protected:
 private:
     void battle();
     QPixmap Wall;
-    QPixmap Hero;
+    Hero player;
     QPixmap Enemy;
     QPixmap Sword;
-    int player_pos_x;
-    int player_pos_y;
     int enemy_pos_x[number_enemy];
     int enemy_pos_y[number_enemy];
 

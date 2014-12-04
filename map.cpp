@@ -10,6 +10,7 @@
 #include <QImage>
 #include <QPoint>
 #include <ctime>
+#include "Hero.h"
 #define size 20
 #define size_map_height 540
 #define size_map_weight 480
@@ -26,9 +27,6 @@ Map::Map(QWidget *parent)
 
     setPalette(QPalette(QColor(Qt::white)));
     setAutoFillBackground(true);
-    player_pos_x = 20;
-    player_pos_y = 20;
-    Hero.load("Hero.bmp");
     Wall.load("Wall.bmp");
     Enemy.load("Enemy.bmp");
     Sword.load("Sword.bmp");
@@ -47,9 +45,9 @@ Map::Map(QWidget *parent)
 
 void Map::paintEvent(QPaintEvent */*event*/)
 {
-    QPoint point(player_pos_x,player_pos_y);
+    QPoint point(player.get_pos_x(),player.get_pos_y());
     QPainter painter(this);
-    painter.drawPixmap(point,Hero);
+    painter.drawPixmap(point,hero.get_symbol());
     for(int i=0;i<=size_map_height;i+=size)
     {
         for(int j = 0; j <=size_map_weight; j+=size)
