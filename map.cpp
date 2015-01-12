@@ -19,6 +19,8 @@
 #define region_play_min_x 20
 #define region_play_min_y 20
 int status = 0;
+int player_pos_x = 20;
+int player_pos_y = 20;
 int battle_enemy = 0;
 Map::Map(QWidget *parent)
     : QWidget(parent)
@@ -27,6 +29,7 @@ Map::Map(QWidget *parent)
 
     setPalette(QPalette(QColor(Qt::white)));
     setAutoFillBackground(true);
+    Hero.load("Hero.bmp");
     Wall.load("Wall.bmp");
     Enemy.load("Enemy.bmp");
     Sword.load("Sword.bmp");
@@ -45,9 +48,9 @@ Map::Map(QWidget *parent)
 
 void Map::paintEvent(QPaintEvent */*event*/)
 {
-    QPoint point(player.get_pos_x(),player.get_pos_y());
+    QPoint point(player_pos_x,player_pos_y);
     QPainter painter(this);
-    painter.drawPixmap(point,hero.get_symbol());
+    painter.drawPixmap(point,Hero);
     for(int i=0;i<=size_map_height;i+=size)
     {
         for(int j = 0; j <=size_map_weight; j+=size)

@@ -2,7 +2,6 @@
 #define MAP_H
 
 #include <QWidget>
-
 #define map_height 20
 #define map_weight 20
 #define number_enemy 10
@@ -24,7 +23,7 @@ protected:
 private:
     void battle();
     QPixmap Wall;
-    Hero player;
+    QPixmap Hero;
     QPixmap Enemy;
     QPixmap Sword;
     int enemy_pos_x[number_enemy];
