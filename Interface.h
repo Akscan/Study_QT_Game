@@ -24,12 +24,14 @@ private:
     QLabel *IntAttack;
     QLabel *Health;
     QLabel *Attack;
+    QLabel *Status;
     int Player_health;
     int Player_attack;
 public slots:
     void Int_Lost_Battle();
 private slots :
     void game_end();
+    void Win_game();
 protected:
     virtual void keyPressEvent(QKeyEvent *);
 signals:

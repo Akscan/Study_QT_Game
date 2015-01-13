@@ -32,6 +32,7 @@ private:
     int enemy_pos_x[number_enemy];
     int enemy_pos_y[number_enemy];
     int hero_status;
+    int num_enemy;
 public slots:
     void move_down();
     void move_up();
@@ -51,6 +52,7 @@ signals:
     void value_changed_down_left();
     void value_changed_down_right();
     void Map_Lost_battle();
+    void Win_game();
 };
 
 

@@ -18,6 +18,7 @@ mainWindow::mainWindow(QWidget *parent)
     connect(MainInterface,SIGNAL(clicked_down_left()),MainMap,SLOT(move_down_left()));
     connect(MainInterface,SIGNAL(clicked_down_right()),MainMap,SLOT(move_down_right()));
     connect(MainMap,SIGNAL(Map_Lost_battle()),MainInterface,SLOT(Int_Lost_Battle()));
+    connect(MainMap,SIGNAL(Win_game()),MainInterface,SLOT(Win_game()));
     MainInterface->setFixedSize(100,480);
     MainMap->setFixedSize(540,480);
 

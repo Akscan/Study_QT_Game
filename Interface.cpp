@@ -26,7 +26,7 @@ Interface::Interface(QWidget *parent)
     Player_health = 10;
     Attack->setNum(Player_attack);
     Health->setNum(Player_health);
-
+    Status = new QLabel;
 
     connect(Down,SIGNAL(clicked()),this,SIGNAL(clicked_down()));
     connect(Up,SIGNAL(clicked()),this,SIGNAL(clicked_up()));
@@ -50,6 +50,7 @@ Interface::Interface(QWidget *parent)
     layout->addWidget(Down_Right,2,2);
     layout->addWidget(IntHealth,3,0);
     layout->addWidget(IntAttack,4,0);
+    layout->addWidget(Status,5,0);
     layout->addWidget(Health,3,2);
     setLayout(layout);
 }
@@ -62,7 +63,10 @@ void Interface::Int_Lost_Battle()
         emit Decrease_health(Player_health);
     }
     else
+    {
+        Status->setText("You Lose");
         emit Player_death();
+    }
 }
 
 void Interface::game_end()
@@ -113,4 +117,9 @@ void Interface::keyPressEvent(QKeyEvent *event)
     {
         Down_Right->click();
     }
+}
+
+void Interface::Win_game()
+{
+    Status->setText("You WIN!");
 }

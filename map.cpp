@@ -28,6 +28,7 @@ int battle_enemy = 0;
 Map::Map(QWidget *parent)
     : QWidget(parent)
 {
+    num_enemy = 10;
     hero_status = 0;
     setFixedSize(540,480);//540 480
     setPalette(QPalette(QColor(Qt::white)));
@@ -257,8 +258,13 @@ void Map::battle()
             }
             else
             {
+                num_enemy--;
                 enemy_pos_x[battle_enemy] = -20;
                 enemy_pos_y[battle_enemy] = -20;
+                if(num_enemy == 0)
+                {
+                    emit Win_game();
+                }
             }
         }
     }
