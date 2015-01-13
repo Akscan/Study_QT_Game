@@ -30,6 +30,8 @@ public slots:
     void Int_Lost_Battle();
 private slots :
     void game_end();
+protected:
+    virtual void keyPressEvent(QKeyEvent *);
 signals:
     void clicked_up();
     void clicked_down();

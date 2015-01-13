@@ -1,6 +1,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QLayout>
+#include <QKeyEvent>
 #include "Interface.h"
 Interface::Interface(QWidget *parent)
     :QWidget(parent)
@@ -76,4 +77,40 @@ void Interface::game_end()
     Down_Right->hide();
     Down->hide();
 
+}
+
+void Interface::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_W)
+    {
+        Up->click();
+    }
+    if(event->key() == Qt::Key_Q)
+    {
+        Up_Left->click();
+    }
+    if(event->key() == Qt::Key_E)
+    {
+        Up_Right->click();
+    }
+    if(event->key() == Qt::Key_A)
+    {
+        Left->click();
+    }
+    if(event->key() == Qt::Key_D)
+    {
+        Right->click();
+    }
+    if(event->key() == Qt::Key_Z)
+    {
+        Down_Left->click();
+    }
+    if(event->key() == Qt::Key_X)
+    {
+        Down->click();
+    }
+    if(event->key() == Qt::Key_C)
+    {
+        Down_Right->click();
+    }
 }

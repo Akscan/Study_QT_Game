@@ -20,10 +20,12 @@ public:
     void enemy_generation();
 protected:
     void paintEvent(QPaintEvent *);
+//    bool event(QEvent *);
 private:
     void battle();
+    Hero *player;
     QPixmap Wall;
-    QPixmap Hero;
+    QPixmap Hero_Image;
     QPixmap Enemy;
     QPixmap Sword;
     int enemy_pos_x[number_enemy];
