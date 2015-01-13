@@ -28,11 +28,13 @@ int battle_enemy = 0;
 Map::Map(QWidget *parent)
     : QWidget(parent)
 {
+    hero_status = 0;
     setFixedSize(540,480);//540 480
     setPalette(QPalette(QColor(Qt::white)));
     setAutoFillBackground(true);
     player = new Hero;
     Hero_Image.load("Hero.bmp");
+    Hero_Sword.load("Hero_Sword.bmp");
     Wall.load("Wall.bmp");
     Enemy.load("Enemy.bmp");
     Sword.load("Sword.bmp");
@@ -51,7 +53,10 @@ void Map::paintEvent(QPaintEvent */*event*/)
 {
     QPoint point(player_pos_x,player_pos_y);
     QPainter painter(this);
-    painter.drawPixmap(point,Hero_Image);
+    if(hero_status == 0)
+        painter.drawPixmap(point,Hero_Image);
+    if(hero_status == 1)
+        painter.drawPixmap(point,Hero_Sword);
     for(int i=0;i<=size_map_height;i+=size)
     {
         for(int j = 0; j <=size_map_weight; j+=size)
@@ -68,9 +73,12 @@ void Map::paintEvent(QPaintEvent */*event*/)
         QPoint point_enemy(enemy_pos_x[i],enemy_pos_y[i]);
         painter.drawPixmap(point_enemy,Enemy);
     }
-    point.setX(40);
-    point.setY(40);
-    painter.drawPixmap(point,Sword);
+    if(hero_status!=1)
+    {
+        point.setX(40);
+        point.setY(40);
+        painter.drawPixmap(point,Sword);
+    }
 
 }
 
@@ -198,6 +206,8 @@ void Map::enemy_generation()
 
 void Map::battle()
 {
+    if(player_pos_x == 40 && player_pos_y == 40)
+        hero_status = 1;
     for(int i = 0;i < number_enemy; i++)
     {
         if(player_pos_x == enemy_pos_x[i] && player_pos_y == enemy_pos_y[i])

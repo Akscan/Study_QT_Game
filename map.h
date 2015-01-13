@@ -28,9 +28,10 @@ private:
     QPixmap Hero_Image;
     QPixmap Enemy;
     QPixmap Sword;
+    QPixmap Hero_Sword;
     int enemy_pos_x[number_enemy];
     int enemy_pos_y[number_enemy];
-
+    int hero_status;
 public slots:
     void move_down();
     void move_up();
