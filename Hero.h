@@ -15,6 +15,8 @@ private:
     int     health;
     int     attack;
     QPixmap symbol;
+    int pos_x;
+    int pos_y;
 signals:
     void move(int status);
 private slots:

@@ -35,37 +35,65 @@ void Hero::move(int status)
     {
         pos_x -= size;
         pos_y -= size;
+        if(pos_x<region_play_min_x && pos_y < region_play_min_y)
+        {
+            pos_x += size;
+            pos_y += size;
+        }
     }
     if(status == 2)//Движение вверх
     {
         pos_y -= size;
+        if(pos_y<region_play_min_y)
+            pos_y += size;
     }
     if(status == 3)//Движение вверх-право
     {
         pos_x += size;
         pos_y -= size;
+        if(pos_x > region_play_max_x && pos_y < region_play_min_y)
+        {
+            pos_x -= size;
+            pos_y += size;
+        }
     }
     if(status == 4)//Движение лево
     {
-        pos_x -= size;
-    }
+        pos_x += size;
+        if(pos_x > region_play_max_x)
+            pos_x -= size;    }
     if(status == 5)//Движение право
     {
-        pos_x += size;
+        pos_x -= size;
+        if(pos_x < region_play_min_x)
+            pos_x += size;
     }
+
     if(status == 6)//Движение низ-лево
     {
         pos_x -= size;
         pos_y += size;
+        if(pos_x < region_play_min_x && pos_y > region_play_max_y)
+        {
+            pos_x += size;
+            pos_y -= size;
+        }
     }
     if(status == 7)//Движение низ
     {
         pos_y += size;
+        if(pos_y>region_play_max_y)
+            pos_y -= size;
     }
     if(status == 8)//Движение низ-право
     {
         pos_x += size;
         pos_y += size;
+        if(pos_x > region_play_max_x && pos_y > region_play_max_y)
+        {
+            pos_x -= size;
+            pos_y -= size;
+        }
     }
 
 }
