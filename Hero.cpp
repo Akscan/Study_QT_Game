@@ -29,3 +29,43 @@ QPixmap Hero::get_symbol()
 {
     return symbol;
 }
+void Hero::move(int status)
+{
+    if(status == 1)//Движение вверх-лево
+    {
+        pos_x -= size;
+        pos_y -= size;
+    }
+    if(status == 2)//Движение вверх
+    {
+        pos_y -= size;
+    }
+    if(status == 3)//Движение вверх-право
+    {
+        pos_x += size;
+        pos_y -= size;
+    }
+    if(status == 4)//Движение лево
+    {
+        pos_x -= size;
+    }
+    if(status == 5)//Движение право
+    {
+        pos_x += size;
+    }
+    if(status == 6)//Движение низ-лево
+    {
+        pos_x -= size;
+        pos_y += size;
+    }
+    if(status == 7)//Движение низ
+    {
+        pos_y += size;
+    }
+    if(status == 8)//Движение низ-право
+    {
+        pos_x += size;
+        pos_y += size;
+    }
+
+}

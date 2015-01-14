@@ -34,25 +34,7 @@ private:
     int hero_status;
     int num_enemy;
 public slots:
-    void move_down();
-    void move_up();
-    void move_right();
-    void move_left();
-    void move_up_left();
-    void move_up_right();
-    void move_down_left();
-    void move_down_right();
 signals:
-    void value_changed_down();
-    void value_changed_up();
-    void value_changed_right();
-    void value_changed_left();
-    void value_changed_up_left();
-    void value_changed_up_right();
-    void value_changed_down_left();
-    void value_changed_down_right();
-    void Map_Lost_battle();
-    void Win_game();
 };
 
 

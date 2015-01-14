@@ -16,7 +16,7 @@ private:
     int     attack;
     QPixmap symbol;
 signals:
-    void move(int);
+    void move(int status);
 private slots:
 };
 

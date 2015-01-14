@@ -38,14 +38,6 @@ Map::Map(QWidget *parent)
     Wall.load("Wall.bmp");
     Enemy.load("Enemy.bmp");
     Sword.load("Sword.bmp");
-    connect(this,SIGNAL(value_changed_down()),this,SLOT(move_down()));
-    connect(this,SIGNAL(value_changed_up()),this,SLOT(move_up()));
-    connect(this,SIGNAL(value_changed_right()),this,SLOT(move_right()));
-    connect(this,SIGNAL(value_changed_left()),this,SLOT(move_left()));
-    connect(this,SIGNAL(value_changed_up_left()),this,SLOT(move_up_left()));
-    connect(this,SIGNAL(value_changed_down_left()),this,SLOT(move_down_left()));
-    connect(this,SIGNAL(value_changed_up_right()),this,SLOT(move_up_right()));
-    connect(this,SIGNAL(value_changed_down_right()),this,SLOT(move_down_right()));
     enemy_generation();
 }
 
