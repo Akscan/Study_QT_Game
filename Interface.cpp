@@ -53,6 +53,7 @@ Interface::Interface(QWidget *parent)
     layout->addWidget(Status,5,0);
     layout->addWidget(Health,3,2);
     setLayout(layout);
+//    setFixedSize(100,480);
 }
 
 void Interface::Int_Lost_Battle()
