@@ -30,19 +30,13 @@ private:
 public slots:
     void Int_Lost_Battle();
 private slots :
+    void button_pressed();
     void game_end();
     void Win_game();
 protected:
     virtual void keyPressEvent(QKeyEvent *);
 signals:
-    void clicked_up();
-    void clicked_down();
-    void clicked_right();
-    void clicked_left();
-    void clicked_up_left();
-    void clicked_up_right();
-    void clicked_down_left();
-    void clicked_down_right();
+    void change_posicion(int);
     void Decrease_health(int);
     void Player_death();
     void Attack_chanched(int attack);

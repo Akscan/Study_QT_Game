@@ -17,7 +17,7 @@ private:
     QPixmap symbol;
     int pos_x;
     int pos_y;
-signals:
+public slots:
     void move(int status);
 private slots:
 };

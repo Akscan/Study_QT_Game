@@ -28,14 +28,14 @@ Interface::Interface(QWidget *parent)
     Health->setNum(Player_health);
     Status = new QLabel;
 
-    connect(Down,SIGNAL(clicked()),this,SIGNAL(clicked_down()));
-    connect(Up,SIGNAL(clicked()),this,SIGNAL(clicked_up()));
-    connect(Right,SIGNAL(clicked()),this,SIGNAL(clicked_right()));
-    connect(Left,SIGNAL(clicked()),this,SIGNAL(clicked_left()));
-    connect(Up_Left,SIGNAL(clicked()),this,SIGNAL(clicked_up_left()));
-    connect(Up_Right,SIGNAL(clicked()),this,SIGNAL(clicked_up_right()));
-    connect(Down_Left,SIGNAL(clicked()),this,SIGNAL(clicked_down_left()));
-    connect(Down_Right,SIGNAL(clicked()),this,SIGNAL(clicked_down_right()));
+    connect(Down,SIGNAL(clicked()),this,SLOT(button_pressed()));
+    connect(Up,SIGNAL(clicked()),this,SLOT(button_pressed()));
+    connect(Right,SIGNAL(clicked()),this,SLOT(button_pressed()));
+    connect(Left,SIGNAL(clicked()),this,SLOT(button_pressed()));
+    connect(Up_Left,SIGNAL(clicked()),this,SLOT(button_pressed()));
+    connect(Up_Right,SIGNAL(clicked()),this,SLOT(button_pressed()));
+    connect(Down_Left,SIGNAL(clicked()),this,SLOT(button_pressed()));
+    connect(Down_Right,SIGNAL(clicked()),this,SLOT(button_pressed()));
     connect(this,SIGNAL(Decrease_health(int)),Health,SLOT(setNum(int)));
     connect(this,SIGNAL(Attack_chanched(int)),Attack,SLOT(setNum(int)));
     connect(this,SIGNAL(Player_death()),this,SLOT(game_end()));
@@ -122,4 +122,41 @@ void Interface::keyPressEvent(QKeyEvent *event)
 void Interface::Win_game()
 {
     Status->setText("You WIN!");
+}
+
+void Interface::button_pressed()
+{
+
+    if(Up_Left->isDown())
+    {
+        emit change_posicion(1);
+    }
+    if(Up->isDown())
+    {
+        emit change_posicion(2);
+    }
+    if(Up_Right->isDown())
+    {
+        emit change_posicion(3);
+    }
+    if(Left->isDown())
+    {
+        emit change_posicion(4);
+    }
+    if(Right->isDown())
+    {
+        emit change_posicion(5);
+    }
+    if(Down_Left->isDown())
+    {
+        emit change_posicion(6);
+    }
+    if(Down->isDown())
+    {
+        emit change_posicion(7);
+    }
+    if(Down_Right->isDown())
+    {
+        emit change_posicion(8);
+    }
 }

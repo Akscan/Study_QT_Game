@@ -34,6 +34,7 @@ private:
     int hero_status;
     int num_enemy;
 public slots:
+    void upd();
 signals:
 };
 

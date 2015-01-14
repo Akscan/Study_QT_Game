@@ -32,7 +32,7 @@ Map::Map(QWidget *parent)
     setFixedSize(540,480);//540 480
     setPalette(QPalette(QColor(Qt::white)));
     setAutoFillBackground(true);
-    player = new Hero;
+    player = new Hero("Hero.bmp");
     Hero_Image.load("Hero.bmp");
     Hero_Sword.load("Hero_Sword.bmp");
     Wall.load("Wall.bmp");
@@ -72,4 +72,41 @@ void Map::paintEvent(QPaintEvent */*event*/)
         painter.drawPixmap(point,Sword);
     }
 
+}
+
+void Map::enemy_generation()
+{
+    srand(time(0));
+    for(int i = 0; i<number_enemy; i++)
+    {
+        enemy_pos_x[i] = rand()%region_play_max_x;
+        enemy_pos_y[i] = rand()%region_play_max_y;
+        for(int k=0;k<size;k++)
+        {
+            if(enemy_pos_x[i]%size!=0)
+            {
+                enemy_pos_x[i]++;
+            }
+            if(enemy_pos_y[i]%size!=0)
+            {
+                enemy_pos_y[i]++;
+            }
+
+        }
+    }
+    for(int i=0;i<number_enemy;i++)
+    {
+        for(int j=0;j<number_enemy;j++)
+        {
+            if(enemy_pos_x[i]==enemy_pos_x[j] && enemy_pos_y[i]==enemy_pos_y[j])
+            {
+                if(i!=j)
+                    enemy_generation();
+            }
+        }
+    }
+}
+void Map::upd()
+{
+    update();
 }
