@@ -31,6 +31,8 @@ private:
     QPixmap Hero_Sword;
     int enemy_pos_x[number_enemy];
     int enemy_pos_y[number_enemy];
+    int enemy_health[number_enemy];
+    int player_attack;
     int hero_status;
     int num_enemy;
 public slots:
@@ -53,6 +55,7 @@ signals:
     void value_changed_down_right();
     void Map_Lost_battle();
     void Win_game();
+    void Attack_changed(int);
 };
 
 

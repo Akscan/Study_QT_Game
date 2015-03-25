@@ -12,6 +12,7 @@
 #include <ctime>
 #include "Hero.h"
 
+#define default_health 100;
 #define size 20
 #define size_map_height 540
 #define size_map_weight 480
@@ -19,7 +20,7 @@
 #define region_play_max_y 420
 #define region_play_min_x 20
 #define region_play_min_y 20
-
+int sword_attack = 0;
 int status = 0;
 int player_pos_x = 20;
 int player_pos_y = 20;
@@ -30,6 +31,7 @@ Map::Map(QWidget *parent)
 {
     num_enemy = 10;
     hero_status = 0;
+    player_attack = 10;
     setFixedSize(540,480);//540 480
     setPalette(QPalette(QColor(Qt::white)));
     setAutoFillBackground(true);
@@ -57,7 +59,11 @@ void Map::paintEvent(QPaintEvent */*event*/)
     if(hero_status == 0)
         painter.drawPixmap(point,Hero_Image);
     if(hero_status == 1)
-        painter.drawPixmap(point,Hero_Sword);
+    {
+       sword_attack = 10;
+       Attack_changed(sword_attack+player_attack);
+       painter.drawPixmap(point,Hero_Sword);
+    }
     for(int i=0;i<=size_map_height;i+=size)
     {
         for(int j = 0; j <=size_map_weight; j+=size)
@@ -177,6 +183,7 @@ void Map::enemy_generation()
     srand(time(0));
     for(int i = 0; i<number_enemy; i++)
     {
+        enemy_health[i] = default_health;
         enemy_pos_x[i] = rand()%region_play_max_x;
         enemy_pos_y[i] = rand()%region_play_max_y;
         for(int k=0;k<size;k++)
@@ -258,9 +265,52 @@ void Map::battle()
             }
             else
             {
-                num_enemy--;
-                enemy_pos_x[battle_enemy] = -20;
-                enemy_pos_y[battle_enemy] = -20;
+                enemy_health[battle_enemy] -= player_attack + sword_attack;
+                if(enemy_health[battle_enemy] == 0 || enemy_health[battle_enemy] < 0)
+                {
+                    num_enemy--;
+                    enemy_pos_x[battle_enemy] = -20;
+                    enemy_pos_y[battle_enemy] = -20;
+                }
+                else
+                {
+                    if(status == 1)
+                    {
+                        player_pos_y-=size;
+                    }
+                    if(status == 2)
+                    {
+                        player_pos_y+=size;
+                    }
+                    if(status == 3)
+                    {
+                        player_pos_x-=size;
+                    }
+                    if(status == 4)
+                    {
+                        player_pos_x+=size;
+                    }
+                    if(status == 5)
+                    {
+                        player_pos_x +=size;
+                        player_pos_y +=size;
+                    }
+                    if(status == 6)
+                    {
+                        player_pos_x -=size;
+                        player_pos_y +=size;
+                    }
+                    if(status == 7)
+                    {
+                        player_pos_x +=size;
+                        player_pos_y -=size;
+                    }
+                    if(status == 8)
+                    {
+                        player_pos_x -=size;
+                        player_pos_y -=size;
+                    }
+                }
                 if(num_enemy == 0)
                 {
                     emit Win_game();
