@@ -80,6 +80,14 @@ void Interface::game_end()
     Down_Left->hide();
     Down_Right->hide();
     Down->hide();
+    Up->disconnect();
+    Right->disconnect();
+    Left->disconnect();
+    Down->disconnect();
+    Up_Left->disconnect();
+    Up_Right->disconnect();
+    Down_Left->disconnect();
+    Down_Right->disconnect();
 
 }
 
