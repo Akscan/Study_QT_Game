@@ -54,7 +54,7 @@ Interface::Interface(QWidget *parent)
     layout->addWidget(Health,3,2);
     setLayout(layout);
 }
-
+//
 void Interface::Int_Lost_Battle()
 {
     if(Player_health!=0)
